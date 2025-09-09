@@ -1,4 +1,6 @@
 ﻿using CommunityToolkit.Maui;
+using MauiGameLibrary.Configuration;
+using MauiGameLibrary.Interfaces;
 using MauiGameLibrary.Services;
 using MauiGameLibrary.ViewModels;
 using MauiGameLibrary.Views;
@@ -31,8 +33,8 @@ namespace MauiGameLibrary
             builder.Services.AddTransient<UpdateGameViewModel>();
 
 
-            builder.Services.AddSingleton<GameDataService>();
-
+            builder.Services.AddSingleton<IGameService, GameDataApiService>();
+            builder.Services.AddSingleton<ApplicationSettings>();
             return builder.Build();
         }
     }

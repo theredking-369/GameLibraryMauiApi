@@ -6,10 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Linq;
 using Newtonsoft.Json;
+using MauiGameLibrary.Interfaces;
 
 namespace MauiGameLibrary.Services
 {
-    public class GameDataService
+    public class GameDataService : IGameService
     {
         private List<GameInformation> _gameInformation = new List<GameInformation>();
         private List<GameType> _gameTypes = new List<GameType>();
@@ -216,6 +217,10 @@ namespace MauiGameLibrary.Services
         
         }
 
+        Task<List<GameInformation>> IGameService.GetAllGameInformation()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
 

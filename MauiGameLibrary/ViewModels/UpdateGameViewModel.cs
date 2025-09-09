@@ -1,4 +1,5 @@
-﻿using MauiGameLibrary.Models;
+﻿using MauiGameLibrary.Interfaces;
+using MauiGameLibrary.Models;
 using MauiGameLibrary.Services;
 using System.Windows.Input;
 
@@ -7,7 +8,7 @@ namespace MauiGameLibrary.ViewModels
     [QueryProperty(nameof(SelectedGame), nameof(SelectedGame))]
     public class UpdateGameViewModel : BaseViewModel
     {
-        private GameDataService _gameDataServices;
+        private IGameService _gameDataServices;
 
         private GameInformation _selectedGame = new GameInformation();
 
@@ -119,7 +120,7 @@ namespace MauiGameLibrary.ViewModels
         public ICommand SelectImageCommand { get; }
 
        
-        public UpdateGameViewModel(GameDataService gameDataServices)
+        public UpdateGameViewModel(IGameService gameDataServices)
         {
             _gameDataServices = gameDataServices;
             SaveChangesCommand = new Command(async () => await SaveChanges());

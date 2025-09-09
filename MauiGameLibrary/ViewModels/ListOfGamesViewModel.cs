@@ -1,4 +1,5 @@
-﻿using MauiGameLibrary.Models;
+﻿using MauiGameLibrary.Interfaces;
+using MauiGameLibrary.Models;
 using MauiGameLibrary.Services;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -7,7 +8,7 @@ namespace MauiGameLibrary.ViewModels
 {
     public class ListOfGamesViewModel : BaseViewModel
     {
-        private GameDataService _gameDataService;
+        private IGameService _gameDataService;
         private ObservableCollection<GameInformation> _games = new ObservableCollection<GameInformation>();
 
         private GameInformation? _selectedGame;
@@ -38,7 +39,7 @@ namespace MauiGameLibrary.ViewModels
             }
         }
 
-        public ListOfGamesViewModel(GameDataService service)
+        public ListOfGamesViewModel(IGameService service)
         {
             _gameDataService = service;
 
@@ -85,9 +86,9 @@ namespace MauiGameLibrary.ViewModels
             await AppShell.Current.GoToAsync("updategameroute", param);
         }
 
-        public void RefreshGames()
+        public async void RefreshGames()
         {
-            Games = new ObservableCollection<GameInformation>(_gameDataService.GetAllGameInformation());
+            Games = new ObservableCollection<GameInformation>(await _gameDataService.GetAllGameInformation());
         }
 
         public override void OnAppearing()
