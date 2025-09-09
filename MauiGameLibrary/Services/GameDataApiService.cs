@@ -99,10 +99,7 @@ namespace MauiGameLibrary.Services
             throw new NotImplementedException();
         }
 
-        Task<List<GameInformation>> IGameService.GetAllGameInformation()
-        {
-            throw new NotImplementedException();
-        }
+
 
         List<AgeRestriction> IGameService.GetAgeRestrictions()
         {
